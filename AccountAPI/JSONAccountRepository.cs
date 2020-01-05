@@ -21,12 +21,17 @@ namespace AccountAPI
                 _listOfAccounts = JsonSerializer.Deserialize<List<AccountInfo>>(json);
                 _listOfAccounts = _listOfAccounts.OrderBy(o => o.Id).ToList();
             }
+            catch (DirectoryNotFoundException)
+            {
+                MockJsonDb db = new MockJsonDb();
+                db.CreateDb();
+            }
             catch (FileNotFoundException)
             {
                 _listOfAccounts = new List<AccountInfo>();
                 string json = JsonSerializer.Serialize(_listOfAccounts);
                 File.WriteAllText(@".\MockJsonDb\Accounts.txt", json);
-            }
+            }  
             catch
             {
                 throw;

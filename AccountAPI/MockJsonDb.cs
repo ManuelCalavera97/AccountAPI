@@ -51,7 +51,8 @@ namespace AccountAPI
         }
 
         public void CreateDb(){
-            
+            Directory.CreateDirectory(@".\MockJsonDb");
+
             string json = JsonSerializer.Serialize(_listOfAccounts);
             File.WriteAllText(@".\MockJsonDb\Accounts.txt", json);
 
