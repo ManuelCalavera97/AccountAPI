@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountAPI", "AccountAPI\AccountAPI.csproj", "{1412F5A5-502E-4EEE-BB2A-70D1828E83A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountAPI", "AccountAPI\AccountAPI.csproj", "{1412F5A5-502E-4EEE-BB2A-70D1828E83A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountAPI.UnitTests", "AccountAPI.UnitTests\AccountAPI.UnitTests.csproj", "{A75BAD60-9878-41BB-A84F-7E8A04218EB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1412F5A5-502E-4EEE-BB2A-70D1828E83A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1412F5A5-502E-4EEE-BB2A-70D1828E83A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1412F5A5-502E-4EEE-BB2A-70D1828E83A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75BAD60-9878-41BB-A84F-7E8A04218EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75BAD60-9878-41BB-A84F-7E8A04218EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75BAD60-9878-41BB-A84F-7E8A04218EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75BAD60-9878-41BB-A84F-7E8A04218EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AccountAPI.Interfaces;
+using AccountAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +27,11 @@ namespace AccountAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddXmlSerializerFormatters();
+            services.AddSingleton<IAccountRepository, JSONAccountRepository>();
+            services.AddSingleton<ICurrentAccountRepository, JSONCurrentAccountRepository>();
+            services.AddSingleton<ITransactionRepository, JSONTransactionRepository>();
+            services.AddSingleton<IFullCurrentAccountInfoBuilder, FullCurrentAccountInfoBuilder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

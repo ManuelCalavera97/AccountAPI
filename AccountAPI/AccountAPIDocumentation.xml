@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AccountAPI</name>
+    </assembly>
+    <members>
+        <member name="T:AccountAPI.Controllers.AccountController">
+            <summary>
+            Controller for account managment
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Controllers.AccountController.GetCurrent(System.Int32)">
+            <summary>
+            Gets informaton about current account and it's transactions.
+            </summary>
+            <param name="amountOfTransactions">Number of transactions.</param>
+            <returns>FullAccountInfo object with account information and transactions</returns>
+        </member>
+        <member name="M:AccountAPI.Controllers.AccountController.GetById(System.UInt32,System.Int32)">
+            <summary>
+            Gets informaton about a certain account and it's transactions.
+            </summary>
+            <param name="id">Id of an account.</param>
+            <param name="amountOfTransactions">Number of transactions.</param>
+            <returns>FullAccountInfo object with account information and transactions</returns>
+        </member>
+        <member name="M:AccountAPI.Controllers.AccountController.Post(AccountAPI.Models.AccountInfo)">
+            <summary>
+            Posts a new account
+            </summary>
+            <param name="accountInfo">Model accountInfo, which needs 2 parameters: "Name" - First name of customer, "Surname" - Surname of customer</param>
+        </member>
+        <member name="T:AccountAPI.Controllers.TransactionsController">
+            <summary>
+            Controller for account transactions.
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Controllers.TransactionsController.Get">
+            <summary>
+            Gets all exsisting transactions.
+            </summary>
+            <returns>A list of transactions.</returns>
+        </member>
+        <member name="M:AccountAPI.Controllers.TransactionsController.GetById(System.UInt32,System.Int32)">
+            <summary>
+            Gets transactions, that belongs to a certain account.
+            </summary>
+            <param name="id">Unique identifier of an account.</param>
+            <param name="amountOfTransactions">Number of transactions.</param>
+            <returns>A list of transactions, that belong to a certain account.</returns>
+        </member>
+        <member name="M:AccountAPI.Controllers.TransactionsController.GetByIdTime(System.UInt32,System.Int64)">
+            <summary>
+            Gets one tranaction, that belongs to a certain account, created at specific time.
+            </summary>
+            <param name="id">Unique identifier of an account.</param>
+            <param name="timeBin">DateTime parameter in binary.</param>
+            <returns>Transaction.</returns>
+        </member>
+        <member name="M:AccountAPI.Controllers.TransactionsController.Post(AccountAPI.Models.AccountTransaction)">
+            <summary>
+            Posts a transaction and adds that transaction to a balance of transaction's account.
+            </summary>
+            <param name="transaction">Model transaction, which needs two parameters: "AccountId" - Id of an account, "transactionSum" - amount of transferred currency</param>
+        </member>
+        <member name="T:AccountAPI.Interfaces.IAccountRepository">
+            <summary>
+            Interface for account database interaction.
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.GetExistingAccountInfo">
+            <summary>
+            Gets one instance of existing accountInfo.
+            </summary>
+            <returns>Information about the account.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.GetAccountInfo">
+            <summary>
+            Gets a list of all instances of accountInfo.
+            </summary>
+            <returns>List of accounts.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.GetAccountInfo(System.UInt32)">
+            <summary>
+            Gets one instance of a certain accountInfo.
+            </summary>
+            <param name="id">Id of account, which to get.</param>
+            <returns>Information about the account.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.AddAccount(AccountAPI.Models.AccountInfo)">
+            <summary>
+            Adds an account to DB
+            </summary>
+            <param name="accountInfo">Information about the account.</param>
+            <returns>Created account.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.UpdateAccountBalance(System.UInt32,System.Double)">
+            <summary>
+            Adds to account's balance a certain ammount.
+            </summary>
+            <param name="id">Id of account, to which to add/subtract a transaction amount.</param>
+            <param name="sum">Amount to add/subtract from balance.</param>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IAccountRepository.CheckAccountExistance(System.UInt32)">
+            <summary>
+            Checks if account exist.
+            </summary>
+            <param name="id">Id of account.</param>
+            <returns>True, if account exists, false if not.</returns>
+        </member>
+        <member name="T:AccountAPI.Interfaces.ICurrentAccountRepository">
+            <summary>
+            Interface for current account database interaction.
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ICurrentAccountRepository.GetCurrentAccountId">
+            <summary>
+            Gets current account Id.
+            </summary>
+            <returns>Id of account.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ICurrentAccountRepository.SetCurrentAccountId(System.UInt32)">
+            <summary>
+            Sets current accout Id.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:AccountAPI.Interfaces.IFullCurrentAccountInfoBuilder">
+            <summary>
+            Interface for building together account information with transactions.
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IFullCurrentAccountInfoBuilder.GetCurrentAccountInfo(System.Int32)">
+            <summary>
+            Gets full current account infrormation.
+            </summary>
+            <param name="transactAmount">Amount of account's last transactions. Will show all by default.</param>
+            <returns>Account information with a list of transactions.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.IFullCurrentAccountInfoBuilder.GetAccountInfo(System.UInt32,System.Int32)">
+            <summary>
+            Gets full certain account information.
+            </summary>
+            <param name="id">Id of account to get.</param>
+            <param name="transactAmount">Amount of account's last transactions. Will show all by default.</param>
+            <returns>Account information with a list of transactions.</returns>
+        </member>
+        <member name="T:AccountAPI.Interfaces.ITransactionRepository">
+            <summary>
+            Interface for transaction database interactions.
+            </summary>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ITransactionRepository.GetTransaction(System.UInt32,System.DateTime)">
+            <summary>
+            Gets transaction,belogning to a certain account, created at certain time.
+            </summary>
+            <param name="id">Id of an account.</param>
+            <param name="time">Time of creation.</param>
+            <returns>Transaction.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ITransactionRepository.GetTransactions">
+            <summary>
+            Gets all existing transactions.
+            </summary>
+            <returns>List of transactions.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ITransactionRepository.GetTransactions(System.UInt32,System.Int32)">
+            <summary>
+            Gets transactions, belogning to a certain account.
+            </summary>
+            <param name="accountId">Id of an account</param>
+            <param name="amount">Amount of account's last transactions. Will show all by default.</param>
+            <returns>List of transactions.</returns>
+        </member>
+        <member name="M:AccountAPI.Interfaces.ITransactionRepository.AddTransaction(System.UInt32,System.Double)">
+            <summary>
+            Adds a transaction to a database of transactions, and updates account's balance.
+            </summary>
+            <param name="accountId">Id of an account.</param>
+            <param name="sum">Transaction sum.</param>
+            <returns>Created transaction.</returns>
+        </member>
+        <member name="T:AccountAPI.Models.AccountInfo">
+            <summary>
+            Represents one account, containing customer's full name and balance
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountInfo.Id">
+            <summary>
+            Id of specific customer/account
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountInfo.Name">
+            <summary>
+            Customer's first name
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountInfo.Surname">
+            <summary>
+            Customer's surname
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountInfo.Balance">
+            <summary>
+            Account's balance
+            </summary>
+        </member>
+        <member name="T:AccountAPI.Models.AccountTransaction">
+            <summary>
+            Represents one transaction
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountTransaction.AccountId">
+            <summary>
+            Id of account, to which transaction belongs to
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountTransaction.Time">
+            <summary>
+            Time of creation of transaction
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.AccountTransaction.transactionSum">
+            <summary>
+            Amount of currency used in transaction
+            </summary>
+        </member>
+        <member name="T:AccountAPI.Models.CurrentAccount">
+            <summary>
+            Represents a log file for current account
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.CurrentAccount.Id">
+            <summary>
+            Id of an account
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.CurrentAccount.Time">
+            <summary>
+            Time of selecting a current account
+            </summary>
+        </member>
+        <member name="T:AccountAPI.Models.FullAccountInfo">
+            <summary>
+            Represents joined information about customer's account an its transactions
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.FullAccountInfo.AccountInfo">
+            <summary>
+            Information about the account
+            </summary>
+        </member>
+        <member name="P:AccountAPI.Models.FullAccountInfo.Transactions">
+            <summary>
+            List of transactions, which belong to the account
+            </summary>
+        </member>
+    </members>
+</doc>
