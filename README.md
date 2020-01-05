@@ -4,7 +4,7 @@ AccountAPI is a web api, that stores customer's balance information along with i
 
 ## Install
 
-To launch the api, download `AccountApiv1` archive with the published project, unarchive it and run the `AccountApiv1.exe` file. Api will be hosted on your local
+To launch the api, download `AccountApiv1` archive with the published project, unarchive it and run the `AccountApiv1.exe` file with admin rights. Api will be hosted on your local
 machine and will be avalible at **localhost:5001;localhost:5000** (Requires Visual Studio 2019 installed with the **ASP.NET and web development** workload).
 
 ## Documentation
